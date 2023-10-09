@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html>
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homework 3 (T1)</title>
+        <style>
+            body {
+                margin: 20px;
+                padding: 20px;
+                font-family: Arial, sans-serif;
+                /* 使用Arial字体 */
+                background-color: #f2f2f2;
+                /* 设置背景颜色 */
+            }
+    
+            h1,
+            h2,
+            h3 {
+                color: #333;
+                /* 设置标题文字颜色 */
+                margin-bottom: 10px;
+            }
+    
+            p {
+                color: #555;
+                /* 设置段落文字颜色 */
+            }
+    
+            ul,
+            ol {
+                margin-left: 20px;
+                color: #555;
+            }
+    
+            ul li,
+            ol li {
+                margin-bottom: 5px;
+            }
+    
+            code {
+          font-family: Consolas, monospace;
+          font-size: 14px;
+        }
+        </style>
+    </head>
+
+<body>
+    <h1>Homework 3 (T1)</h1>
+    <h2>运行Docker容器：</h2>
+    <pre><code># Windows PowerShell
+PS C:\Users\DELL\Desktop&gt; docker run --name=homework3 -dt -h bioinfo_docker --restart unless-stopped -v C:\Users\DELL\Desktop\生信\bioinfo_tsinghua_share:/home/test/share xfliu1995/bioinfo_tsinghua:2
+b074a74b62616630e5451c3d81dc955ceb998d1ffe80a3f6e5c7a8893ea63ffb
+PS C:\Users\DELL\Desktop&gt; docker exec -it homework3 bash</code></pre>
+
+    <h2>创建并编辑bash.sh脚本：</h2>
+    <pre><code>test@bioinfo_docker:~/share$ touch bash.sh
+test@bioinfo_docker:~/share$ chmod u+x bash.sh
+test@bioinfo_docker:~/share$ vim bash.sh</code></pre>
+
+    <h2>bash.sh脚本内容：</h2>
+    <pre><code>#!/bin/bash
+
+folder="bash_homework"
+if [ ! -d "$folder" ]; then
+  echo "文件夹 $folder 不存在"
+  exit 1
+fi
+
+touch filenames.txt
+touch dirname.txt
+
+> filenames.txt
+> dirname.txt
+
+for item in "$folder"/*; do
+  if [ -f "$item" ]; then
+    echo "$(basename "$item")" &gt;&gt; filenames.txt
+  elif [ -d "$item" ]; then
+    echo "$(basename "$item")" &gt;&gt; dirname.txt
+  fi
+done
+
+echo "文件名已写入 filenames.txt"
+echo "子文件夹名已写入 dirname.txt"
+:wq</code></pre>
+
+    <h2>运行bash.sh脚本：</h2>
+    <pre><code>test@bioinfo_docker:~/share$ ls
+1.gtf.gz  bash_homework  bash_homework.zip.gz  bash.sh  test_command.gtf  test.gtf
+test@bioinfo_docker:~/share$ bash bash.sh</code></pre>
+
+    <h2>查看生成的文件：</h2>
+    <pre><code>test@bioinfo_docker:~/share$ cat filenames.txt</code></pre>
+
+    <h2>filenames.txt文件内容：</h2>
+    <pre><code>a1.txt
+a.txt
+b1.txt
+bam_wig.sh
+b.filter_random.pl
+c1.txt
+chrom.size
+c.txt
+d1.txt
+dir.txt
+e1.txt
+f1.txt
+human_geneExp.txt
+if.sh
+image
+insitiue.txt
+mouse_geneExp.txt
+name.txt
+number.sh
+out.bw
+random.sh
+read.sh
+test3.sh
+test4.sh
+test.sh
+test.txt
+wigToBigWig</code></pre>
+
+    <h2>查看生成的文件夹名：</h2>
+    <pre><code>test@bioinfo_docker:~/share$ cat dirname.txt</code></pre>
+
+    <h2>dirname.txt文件内容：</h2>
+    <pre><code>a-docker
+app
+backup
+bin
+biosoft
+c1-RBPanno
+datatable
+db
+download
+e-annotation
+exRNA
+genome
+git
+highcharts
+home
+hub29
+ibme
+l-lwl
+map2
+mljs
+module
+mogproject
+node_modules
+perl5
+postar2
+postar_app
+postar.docker
+RBP_map
+rout
+script
+script_backup
+software
+tcga
+test
+tmp
+tmp_script
+var
+x-rbp</code></pre>
+
+</body>
+
+</html>

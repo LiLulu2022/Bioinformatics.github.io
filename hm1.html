@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <title>Homework 1</title>
+        <style>
+            body {
+                margin: 20px;
+                padding: 20px;
+                font-family: Arial, sans-serif; /* 使用Arial字体 */
+                background-color: #f2f2f2; /* 设置背景颜色 */
+            }
+            h1, h2, h3 {
+                color: #333; /* 设置标题文字颜色 */
+                margin-bottom: 10px;
+            }
+            p {
+                color: #555; /* 设置段落文字颜色 */
+            }
+            ul, ol {
+                margin-left: 20px;
+                color: #555;
+            }
+            ul li, ol li {
+                margin-bottom: 5px;
+            }
+        </style>
+    </head>
+
+<body>
+    <h1>Homework 1</h1>
+
+    <h2>Getting Started:</h2>
+    <p>
+        GitHub Repository: <a href="https://github.com/LiLulu2022/Bioinformatics-2023/blob/main/README.md"
+            target="_blank">https://github.com/LiLulu2022/Bioinformatics-2023/blob/main/README.md</a>
+    </p>
+    <p>
+        Tsinghua Cloud: <a href="https://cloud.tsinghua.edu.cn/f/dd73e803a88b43b3848f/"
+            target="_blank">https://cloud.tsinghua.edu.cn/f/dd73e803a88b43b3848f/</a>
+    </p>
+
+    <h2>I. Set up</h2>
+    <p>Screen recording: <a href="https://cloud.tsinghua.edu.cn/f/43efddd16f634bc28b9e/"
+            target="_blank">https://cloud.tsinghua.edu.cn/f/43efddd16f634bc28b9e/</a></p>
+
+    <h3>I.2.1 Linux - Basic Command</h3>
+    <pre>
+        <code>
+wc -l test_command.gtf
+wc -c test_command.gtf
+grep '^chr_' test_command.gtf | grep 'YDL248W'
+sed 's/chr_/chromosome_/g' test_command.gtf | awk '{print $1, $3, $4, $5}'
+awk '{temp=$2; $2=$3; $3=temp; print}' test_command.gtf | sort -k4,4n -k5,5n &lt; result.gtf
+ls -l test_command.gtf
+chmod u=rwx,g=rwx,o=r test_command.gtf
+ls -l test_command.gtf
+        </code>
+    </pre>
+</body>
+
+</html>
